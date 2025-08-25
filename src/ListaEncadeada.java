@@ -8,53 +8,31 @@ public class ListaEncadeada<T> {
         inicio = novoNo;
     }
 
-    // Remover do início
-    // Complexidade O(1): apenas move o ponteiro do início para o próximo
-    public void removerDoInicio() {
-        if (inicio != null) {
-            inicio = inicio.proximo;
-        }
-    }
-
-    // Obter elemento por índice
-    // Complexidade O(n): no pior caso, percorre a lista até o índice desejado
-    public T obterEm(int indice) {
-        if (indice < 0) {
-            throw new IndexOutOfBoundsException("Índice inválido: " + indice);
-        }
-
-        No<T> atual = inicio;
-        int contador = 0;
-
-        while (atual != null) {
-            if (contador == indice) {
-                return atual.dado;
+    // Inserir no fim
+    // Complexidade O(n): precisa percorrer até o último nó
+    public void inserirNoFim(T dado) {
+        No<T> novoNo = new No<>(dado);
+        if (inicio == null) {
+            inicio = novoNo;
+        } else {
+            No<T> atual = inicio;
+            while (atual.proximo != null) {
+                atual = atual.proximo;
             }
-            atual = atual.proximo;
-            contador++;
+            atual.proximo = novoNo;
         }
-
-        throw new IndexOutOfBoundsException("Índice inválido: " + indice);
     }
 
-    // Remover primeira ocorrência de um valor
-    // Complexidade O(n): no pior caso percorre toda a lista
-    public void removerValor(T dado) {
-        if (inicio == null) return;
-
-        if (inicio.dado.equals(dado)) {
-            inicio = inicio.proximo;
-            return;
-        }
-
+    // Tamanho (versão O(n))
+    // Complexidade O(n): percorre todos os nós e conta
+    public int tamanho() {
+        int contador = 0;
         No<T> atual = inicio;
-        while (atual.proximo != null && !atual.proximo.dado.equals(dado)) {
+        while (atual != null) {
+            contador++;
             atual = atual.proximo;
         }
-
-        if (atual.proximo != null) {
-            atual.proximo = atual.proximo.proximo;
-        }
+        return contador;
     }
 
     // Exibir lista
