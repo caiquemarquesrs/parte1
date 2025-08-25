@@ -1,4 +1,5 @@
 public class ListaEncadeada<T> {
+
     private No<T> inicio;
 
     // Inserir no início

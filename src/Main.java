@@ -1,23 +1,16 @@
 public class Main {
     public static void main(String[] args) {
-        ListaEncadeada<Tarefa> lista = new ListaEncadeada<>();
 
+        ListaEncadeada<Tarefa> lista = new ListaEncadeada<>();
         lista.inserirNoInicio(new Tarefa("Estudar Java"));
         lista.inserirNoInicio(new Tarefa("Fazer exercício"));
         lista.inserirNoInicio(new Tarefa("Ler artigo"));
-
         System.out.print("Lista inicial: ");
         lista.exibir();
-
-        // Testar obterEm
         System.out.println("Elemento no índice 1: " + lista.obterEm(1));
-
-        // Testar removerDoInicio
         lista.removerDoInicio();
         System.out.print("Após remover do início: ");
         lista.exibir();
-
-        // Testar removerValor
         ListaEncadeada<String> lista2 = new ListaEncadeada<>();
         lista2.inserirNoInicio("A");
         lista2.inserirNoInicio("B");
