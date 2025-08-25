@@ -1,7 +1,7 @@
 public class ListaEncadeada<T> {
     private No<T> inicio;
 
-    // Inserir no início (para testes)
+    // Inserir no início
     public void inserirNoInicio(T dado) {
         No<T> novoNo = new No<>(dado);
         novoNo.proximo = inicio;
@@ -22,10 +22,8 @@ public class ListaEncadeada<T> {
         if (indice < 0) {
             throw new IndexOutOfBoundsException("Índice inválido: " + indice);
         }
-
         No<T> atual = inicio;
         int contador = 0;
-
         while (atual != null) {
             if (contador == indice) {
                 return atual.dado;
@@ -33,7 +31,6 @@ public class ListaEncadeada<T> {
             atual = atual.proximo;
             contador++;
         }
-
         throw new IndexOutOfBoundsException("Índice inválido: " + indice);
     }
 
@@ -41,17 +38,14 @@ public class ListaEncadeada<T> {
     // Complexidade O(n): no pior caso percorre toda a lista
     public void removerValor(T dado) {
         if (inicio == null) return;
-
         if (inicio.dado.equals(dado)) {
             inicio = inicio.proximo;
             return;
         }
-
         No<T> atual = inicio;
         while (atual.proximo != null && !atual.proximo.dado.equals(dado)) {
             atual = atual.proximo;
         }
-
         if (atual.proximo != null) {
             atual.proximo = atual.proximo.proximo;
         }
