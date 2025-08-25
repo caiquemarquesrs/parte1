@@ -1,18 +1,16 @@
 public class ListaEncadeada<T> {
+
     private No<T> inicio;
-    private int tamanhoTotal = 0;
 
     // Inserir no início
-    // O(1)
     public void inserirNoInicio(T dado) {
         No<T> novoNo = new No<>(dado);
         novoNo.proximo = inicio;
         inicio = novoNo;
-        tamanhoTotal++;
     }
 
     // Inserir no fim
-    // O(n)
+    // Complexidade O(n): precisa percorrer até o último nó
     public void inserirNoFim(T dado) {
         No<T> novoNo = new No<>(dado);
         if (inicio == null) {
@@ -24,58 +22,18 @@ public class ListaEncadeada<T> {
             }
             atual.proximo = novoNo;
         }
-        tamanhoTotal++;
     }
 
-    // Remover do início
-    // O(1)
-    public void removerDoInicio() {
-        if (inicio != null) {
-            inicio = inicio.proximo;
-            tamanhoTotal--;
-        }
-    }
-
-    // Remover valor
-    // O(n)
-    public void removerValor(T dado) {
-        if (inicio == null) return;
-
-        if (inicio.dado.equals(dado)) {
-            inicio = inicio.proximo;
-            tamanhoTotal--;
-            return;
-        }
-
-        No<T> atual = inicio;
-        while (atual.proximo != null && !atual.proximo.dado.equals(dado)) {
-            atual = atual.proximo;
-        }
-
-        if (atual.proximo != null) {
-            atual.proximo = atual.proximo.proximo;
-            tamanhoTotal--;
-        }
-    }
-
-    // Obter por índice
-    // O(n)
-    public T obterEm(int indice) {
-        if (indice < 0 || indice >= tamanhoTotal) {
-            throw new IndexOutOfBoundsException("Índice inválido: " + indice);
-        }
-
-        No<T> atual = inicio;
-        for (int i = 0; i < indice; i++) {
-            atual = atual.proximo;
-        }
-        return atual.dado;
-    }
-
-    // Tamanho otimizado
-    // O(1): apenas retorna o valor já armazenado
+    // Tamanho (versão O(n))
+    // Complexidade O(n): percorre todos os nós e conta
     public int tamanho() {
-        return tamanhoTotal;
+        int contador = 0;
+        No<T> atual = inicio;
+        while (atual != null) {
+            contador++;
+            atual = atual.proximo;
+        }
+        return contador;
     }
 
     // Exibir lista
