@@ -1,4 +1,9 @@
-package PACKAGE_NAME;
+public class No<T> {
+    T dado;
+    No<T> proximo;
 
-public class No {
+    public No(T dado) {
+        this.dado = dado;
+        this.proximo = null;
+    }
 }

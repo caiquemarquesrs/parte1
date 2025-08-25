@@ -1,15 +1,30 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        ListaEncadeada<Tarefa> lista = new ListaEncadeada<>();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        lista.inserirNoInicio(new Tarefa("Estudar Java"));
+        lista.inserirNoInicio(new Tarefa("Fazer exercício"));
+        lista.inserirNoInicio(new Tarefa("Ler artigo"));
+
+        System.out.print("Lista inicial: ");
+        lista.exibir();
+
+        // Testar obterEm
+        System.out.println("Elemento no índice 1: " + lista.obterEm(1));
+
+        // Testar removerDoInicio
+        lista.removerDoInicio();
+        System.out.print("Após remover do início: ");
+        lista.exibir();
+
+        // Testar removerValor
+        ListaEncadeada<String> lista2 = new ListaEncadeada<>();
+        lista2.inserirNoInicio("A");
+        lista2.inserirNoInicio("B");
+        lista2.inserirNoInicio("C");
+        lista2.exibir();
+        lista2.removerValor("B");
+        System.out.print("Após remover 'B': ");
+        lista2.exibir();
     }
 }
