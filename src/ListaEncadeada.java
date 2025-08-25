@@ -1,4 +1,5 @@
 public class ListaEncadeada<T> {
+
     private No<T> inicio;
     private int tamanhoTotal = 0;
 
@@ -12,7 +13,7 @@ public class ListaEncadeada<T> {
     }
 
     // Inserir no fim
-    // O(n)
+    // Complexidade O(n): precisa percorrer até o último nó
     public void inserirNoFim(T dado) {
         No<T> novoNo = new No<>(dado);
         if (inicio == null) {
@@ -28,7 +29,7 @@ public class ListaEncadeada<T> {
     }
 
     // Remover do início
-    // O(1)
+    // Complexidade O(1): apenas move o ponteiro do início para o próximo
     public void removerDoInicio() {
         if (inicio != null) {
             inicio = inicio.proximo;
@@ -36,35 +37,31 @@ public class ListaEncadeada<T> {
         }
     }
 
-    // Remover valor
-    // O(n)
+    // Remover primeira ocorrência de um valor
+    // Complexidade O(n): no pior caso percorre toda a lista
     public void removerValor(T dado) {
         if (inicio == null) return;
-
         if (inicio.dado.equals(dado)) {
             inicio = inicio.proximo;
             tamanhoTotal--;
             return;
         }
-
         No<T> atual = inicio;
         while (atual.proximo != null && !atual.proximo.dado.equals(dado)) {
             atual = atual.proximo;
         }
-
         if (atual.proximo != null) {
             atual.proximo = atual.proximo.proximo;
             tamanhoTotal--;
         }
     }
 
-    // Obter por índice
-    // O(n)
+    // Obter elemento por índice
+    // Complexidade O(n): no pior caso, percorre a lista até o índice desejado
     public T obterEm(int indice) {
         if (indice < 0 || indice >= tamanhoTotal) {
             throw new IndexOutOfBoundsException("Índice inválido: " + indice);
         }
-
         No<T> atual = inicio;
         for (int i = 0; i < indice; i++) {
             atual = atual.proximo;
